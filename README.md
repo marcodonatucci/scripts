@@ -1,6 +1,6 @@
 # Automation Scripts Repository
 
-This repository contains a collection of useful automation scripts for various tasks, such as deploying Docker images to AWS Elastic Container Registry (ECR), automating deployments, and more. The goal is to streamline various development and deployment workflows.
+This repository contains a collection of useful automation scripts for various tasks. The target OS for this scripts is macOS. ⚠️
 
 ## Scripts
 
