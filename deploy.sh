@@ -14,6 +14,13 @@ AWS_ACCOUNT_ID="${AWS_ACCOUNT_ID:-}"
 AWS_REGION="${AWS_REGION:-}"
 ECR_REPOSITORY="$IMAGE_NAME"  # Costruisce il nome del repository 
 
+if [ -z "$AWS_ACCOUNT_ID" ] || [ -z "$AWS_REGION" ]; then
+    echo "Errore: AWS_ACCOUNT_ID e AWS_REGION devono essere specificati."
+    echo "Assicurati di aver impostato correttamente le variabili d'ambiente."
+    exit 1
+fi
+
+
 # Open docker desktop and wait for it to be ready 
 #check if docker desktop is running
 if ! docker info > /dev/null 2>&1; then
