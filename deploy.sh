@@ -10,8 +10,8 @@ fi
 
 # Nome dell'immagine e repository ECR
 IMAGE_NAME=$1
-AWS_ACCOUNT_ID=""
-AWS_REGION=""
+AWS_ACCOUNT_ID="${AWS_ACCOUNT_ID:-}"
+AWS_REGION="${AWS_REGION:-}"
 ECR_REPOSITORY="$IMAGE_NAME"  # Costruisce il nome del repository 
 
 # Open docker desktop and wait for it to be ready 
