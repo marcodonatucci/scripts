@@ -12,7 +12,7 @@ fi
 IMAGE_NAME=$1
 AWS_ACCOUNT_ID=""
 AWS_REGION=""
-ECR_REPOSITORY="$IMAGE_NAME"  # Costruisce il nome del repository concatenando "topfly/"
+ECR_REPOSITORY="$IMAGE_NAME"  # Costruisce il nome del repository 
 
 # Open docker desktop and wait for it to be ready 
 #check if docker desktop is running
