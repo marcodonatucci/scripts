@@ -163,27 +163,27 @@ fi
 echo "AWS console opened."
 
 # Automatic configuration of the 'deploy' alias
-# ALIAS_NAME="deploy"  # Define the alias name as 'deploy'
-# SCRIPT_PATH="$(realpath "$0")" # Get the absolute path of the script being executed
+ALIAS_NAME="deploy"  # Define the alias name as 'deploy'
+SCRIPT_PATH="$(realpath "$0")" # Get the absolute path of the script being executed
 
 # Determine the shell configuration file based on the shell being used
-# if [ -n "$ZSH_VERSION" ]; then
-#     SHELL_CONFIG="$HOME/.zshrc"  # Use .zshrc for Zsh shell
-# elif [ -n "$BASH_VERSION" ]; then
-#     SHELL_CONFIG="$HOME/.bashrc"  # Use .bashrc for Bash shell
-# fi
+if [[ "$SHELL" == */zsh ]]; then
+    SHELL_CONFIG="$HOME/.zshrc"  # Use .zshrc for Zsh shell
+elif [[ "$SHELL" == */bash ]]; then
+    SHELL_CONFIG="$HOME/.bashrc"  # Use .bashrc for Bash shell
+fi
 
-# Check if the alias already exists in the current shell
-# if ! alias "$ALIAS_NAME" &> /dev/null; then
-#     # Prompt the user to confirm if they want to create the alias
-#     read -p "Do you want to create the alias '$ALIAS_NAME' for the command '$SCRIPT_PATH'? (y/n): " user_input
-#     if [[ "$user_input" == "y" || "$user_input" == "Y" ]]; then
-#         # Add the alias to the shell configuration file
-#         echo "alias $ALIAS_NAME='$SCRIPT_PATH'" >> "$SHELL_CONFIG"
-#         echo "Alias '$ALIAS_NAME' added successfully."
-#         echo "To activate the alias, reload the shell or run 'source $SHELL_CONFIG'."
-#     else
-#         # Inform the user that the alias was not created
-#         echo "Alias not created."
-#     fi
-# fi
+# Check if the alias already exists in the current shell configuration file
+if ! grep -q "alias $ALIAS_NAME=" "$SHELL_CONFIG"; then
+    # Prompt the user to confirm if they want to create the alias
+    read -p "Do you want to create the alias '$ALIAS_NAME' for the command '$SCRIPT_PATH'? (y/n): " user_input
+    if [[ "$user_input" == "y" || "$user_input" == "Y" ]]; then
+        # Add the alias to the shell configuration file
+        echo "alias $ALIAS_NAME='$SCRIPT_PATH'" >> "$SHELL_CONFIG"
+        echo "Alias '$ALIAS_NAME' added successfully."
+        echo "To activate the alias, reload the shell or run 'source $SHELL_CONFIG'."
+    else
+        # Inform the user that the alias was not created
+        echo "Alias not created."
+    fi
+fi
